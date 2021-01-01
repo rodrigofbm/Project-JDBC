@@ -1,11 +1,13 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
 
 import db.DB;
 import db.DbException;
 import model.dao.DaoFactory;
 import model.dao.SellerDAO;
+import model.entities.Department;
 import model.entities.Seller;
 
 public class App {
@@ -27,6 +29,18 @@ public class App {
         	list = sellerDAO.findAll();
             
         	list.forEach(System.out::println);
+        	
+        	System.out.println("\n==== TEST 4: seller insert ====");
+        	Seller newSeller = new Seller(
+        			null, 
+        			"Greg", 
+        			"greg@gmail.com", 
+        			new Date(), 
+        			4000.0, 
+        			new Department(2, null));
+        	sellerDAO.insert(newSeller);;
+            
+        	System.out.println(newSeller);
             
             
 		} catch (DbException e) {
