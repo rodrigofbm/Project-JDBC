@@ -18,10 +18,15 @@ public class App {
             
             System.out.println(seller);
             
-            System.out.println("\n==== TEST 2: seller findByDepartment ====");
-        	List<Seller> seller2 = sellerDAO.findByDepartment(2);
+            System.out.println("\n==== TEST 2: seller findByDepartment(2) ====");
+        	List<Seller> list = sellerDAO.findByDepartment(2);
             
-        	seller2.forEach(System.out::println);
+        	list.forEach(System.out::println);
+        	
+        	System.out.println("\n==== TEST 3: seller findAll ====");
+        	list = sellerDAO.findAll();
+            
+        	list.forEach(System.out::println);
             
             
 		} catch (DbException e) {
