@@ -38,7 +38,7 @@ public class App {
         			new Date(), 
         			4000.0, 
         			new Department(2, null));
-        	sellerDAO.insert(newSeller);;
+        	//sellerDAO.insert(newSeller);
             
         	System.out.println(newSeller);
             
@@ -47,9 +47,16 @@ public class App {
         	seller.setName("Martha Wayne");
         	seller.setEmail("martha_w@gmail.com");
         	
-        	sellerDAO.update(seller);;
+        	sellerDAO.update(seller);
             
         	System.out.println(seller);
+        	
+        	System.out.println("\n==== TEST 6: seller delete ====");
+        	seller = sellerDAO.findById(10);
+        	
+        	sellerDAO.deleteById(seller.getId());
+            
+        	System.out.println("Deletado");
 		} catch (DbException e) {
 			e.printStackTrace();
 		}finally {

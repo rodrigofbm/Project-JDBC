@@ -61,7 +61,6 @@ public class SellerDaoJDBC implements SellerDAO {
 	@Override
 	public void update(Seller obj) {
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		try {
 			ps = this.conn.prepareStatement(
 					"UPDATE seller "
@@ -75,23 +74,29 @@ public class SellerDaoJDBC implements SellerDAO {
 			ps.setInt(5, obj.getDepartment().getId());
 			ps.setInt(6, obj.getId());
 			
-			int rowsAffected = ps.executeUpdate();
-			
-			if(rowsAffected <= 0) {
-				throw new DbException("Unexpected error. No rows affected!");
-			}
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closeStatement(ps);
-			DB.closeResultSet(rs);
 		}
 	}
 
 	@Override
 	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement ps = null;
+		try {
+			ps = this.conn.prepareStatement("DELETE FROM seller WHERE Id = ?;");
+			
+			ps.setInt(1, id);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(ps);
+		}
 	}
 
 	@Override
