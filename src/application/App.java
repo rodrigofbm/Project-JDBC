@@ -42,7 +42,14 @@ public class App {
             
         	System.out.println(newSeller);
             
+        	System.out.println("\n==== TEST 5: seller update ====");
+        	seller = sellerDAO.findById(1);
+        	seller.setName("Martha Wayne");
+        	seller.setEmail("martha_w@gmail.com");
+        	
+        	sellerDAO.update(seller);;
             
+        	System.out.println(seller);
 		} catch (DbException e) {
 			e.printStackTrace();
 		}finally {
